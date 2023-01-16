@@ -28,17 +28,17 @@ function Details(props) {
       setTeam(team);
       setIsLoading(false);
     });
-  }, []);
+  }, [teamId]);
 
   useEffect(() => {
-    const leader = props.users.find((user) => user.id == team.teamLeadId);
+    const leader = props.users.find((user) => user.id === team.teamLeadId);
     setTeamLeader(leader);
     const members = props.users.filter(
       (user) => team.teamMemberIds?.indexOf(user.id) !== -1
     );
 
     setTeamMembers(members);
-  }, [team]);
+  }, [team, props.users]);
 
   useEffect(() => {
     const iFilter = filter.toLowerCase();
@@ -46,7 +46,7 @@ function Details(props) {
       user.displayName.toLowerCase().includes(iFilter)
     );
     setFoundMembers(foundMembers);
-  }, [filter]);
+  }, [filter, teamMembers]);
 
   return (
     <>

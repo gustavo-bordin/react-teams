@@ -16,7 +16,7 @@ function Details(props) {
       setUser(user);
       setIsLoading(false);
     });
-  });
+  }, [userId]);
 
   return (
     <>
