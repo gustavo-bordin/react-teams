@@ -22,7 +22,7 @@ function Teams(props) {
       team.name.toLowerCase().includes(iFilter)
     );
     setFoundTeams(foundTeams);
-  }, [filter]);
+  }, [filter, props.teams]);
 
   return (
     <>
