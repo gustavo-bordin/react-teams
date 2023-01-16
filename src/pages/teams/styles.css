@@ -1,0 +1,18 @@
+.team-details-labels {
+    display: flex;
+    place-items: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.team-details-labels p {
+    margin-left: 5px;
+    color: grey;
+    margin-right: 30px;
+}
+
+.team-details-title {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+}

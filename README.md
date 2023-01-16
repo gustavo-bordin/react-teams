@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# 1. Approaching the problem
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1.1 I started looking at the teams and users data to see how i would organize and link them, I came up with the following assertions;
 
-## Available Scripts
+- Does not have pagination, so it requires full load;
+- In a list of all teams, i cant show how many members each one have, unless i make 500reqs everytime requesting for the details of each one.
+- I can see the members of a team, but i cant see the teams of a member; because team details has all users info, but user details does not have all teams info. In order to achive such feature i would have to make 500reqs to check if the user is in each team.
 
-In the project directory, you can run:
+### 1.2 With the data structure in mind, i started to design the website flow, i came up with the following structure;
 
-### `npm start`
+- --> Main page (List of teams) `needs to fetch teams`
+- ------> Team details (With list of members) `needs to fetch users and team details`
+- -----------> Member details `needs to fetch user details`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1.3 Now, i needed to think on the states and how i would organize them the best way, i came up with the following thoughts;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- As we don't have any query param or pagination in the api, we cant call the users api everytime we enter in the Team details
+- It is better to fetch all the data a single time when the app starts
+- As we don't have pagination in the teams, it is better to fetch everything a single time too.
+- As this is a simple application, i decided to fetch all the data in a parent component and pass them to children via props, no advanced state management such as Context or Redux.
 
-### `npm test`
+### 1.4 Then, i created these routes;
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `/` redirects to /teams
+- `/teams` receives an array with all teams via props - Works as Main page
+- `/teams/:id` receives an id via params and an array with all users via props - Works as Team details
+  - Here an array of users is needed to filter and find the team members
+- `/users/:id` receives an id via props - Works as User details
 
-### `npm run build`
+# 2. How to run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2.1. Have npm or yarn installed in your computer
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Get NPM](https://nodejs.org/en/download/)
+- [Get Yarn](https://yarnpkg.com/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2.2. Install all react dependencies with your preferred pkg manager
 
-### `npm run eject`
+With NPM, run
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+With Yarn, run
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+yarn install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2.3. Start the project
 
-## Learn More
+With NPM, run
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+With Yarn, run
 
-### Code Splitting
+```
+yarn start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# 3. Project structure
 
-### Analyzing the Bundle Size
+Important files, each page uses one or more components; each page makes one or more calls in the api.js file; all pages are wrapped in router.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+src
+  components/
+     list/
+     listItem/
+     searchbar/
+  pages/
+    teams/
+    users/
+  router.js
+  api.js
+```

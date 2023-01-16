@@ -1,0 +1,38 @@
+
+/* Navbar with links to teams and members */
+nav {
+    width: 100vw;
+    height: 50px;
+
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 1px 0 rgb(0 0 0 / 8%), 0 1px 2px 0 rgb(0 0 0 / 12%);
+    margin-bottom: 30px;
+}
+
+
+/* Navbar items list */
+nav ul {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    place-items: center;
+}
+
+nav ul a {
+    margin-right: 20px;
+}
+
+/* Navbar items list item */
+.text-link {
+    text-decoration: none;
+    color: rgb(135, 135, 135);
+}
+
+.text-link:hover {
+    color: rgb(28, 28, 28);
+}
+
+.logo {
+    width: 100px;
+}

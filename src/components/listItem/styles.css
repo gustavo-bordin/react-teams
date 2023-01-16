@@ -1,0 +1,38 @@
+
+.list-item {
+    flex: 1;
+    box-shadow: 0 1px 3px rgb(23 23 26 / 10%), 0 3px 6px rgb(23 23 26 / 10%);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    min-width: 230px;
+}
+
+.list-item:hover {
+    box-shadow: 0 1px 3px rgba(59, 134, 255, 0.47), 0 3px 6px rgb(23 23 26 / 10%);
+}
+
+.list-item-title {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+}
+
+.list-item-title h1 {
+    flex: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-item-title h2 {
+    margin-left: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+    color: grey;
+    font-size: 10px;
+}

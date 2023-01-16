@@ -1,0 +1,27 @@
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
+
+.loading {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+
+.loading img {
+    width: 130px;
+    animation: rotation 2s infinite linear;
+}
+
+.loading p {
+    margin-left: 20px;
+    font-size: 30px;
+    color: rgb(169, 169, 169);
+}
