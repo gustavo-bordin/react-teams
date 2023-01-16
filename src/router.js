@@ -5,7 +5,6 @@ import { getTeams, getUsers } from "./api";
 import Teams from "./pages/teams";
 import TeamDetails from "./pages/teams/details";
 import UserDetails from "./pages/users/details";
-import Loading from "./components/loading";
 
 function Router() {
   const [users, setUsers] = useState([]);
